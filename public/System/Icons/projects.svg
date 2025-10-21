@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Projects Icon</title>
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect fill="#FF6B6B" x="8" y="8" width="12" height="12" rx="2"></rect>
+        <rect fill="#4ECDC4" x="28" y="8" width="12" height="12" rx="2"></rect>
+        <rect fill="#45B7D1" x="8" y="28" width="12" height="12" rx="2"></rect>
+        <rect fill="#FFA502" x="28" y="28" width="12" height="12" rx="2"></rect>
+        <path d="M20,24 L28,24" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"></path>
+        <path d="M24,20 L24,28" stroke="#1A1A2E" stroke-width="2" stroke-linecap="round"></path>
+    </g>
+</svg>
