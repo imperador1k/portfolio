@@ -1,55 +1,54 @@
-import React, { useState } from 'react';
-import { Send, User, Mail, MessageSquare, Zap } from 'lucide-react';
-import emailjs from '@emailjs/browser';
-import styled from 'styled-components';
-import CustomScrollbar from '../styles/CustomScrollbar';
+import { useState } from "react";
+import { Send, User, Mail, MessageSquare, Zap } from "lucide-react";
+import emailjs from "@emailjs/browser";
+import styled from "styled-components";
+import CustomScrollbar from "components/apps/Contact/styles/CustomScrollbar";
 
 const FormContainer = styled.div`
-  padding: 2.5rem;
-  background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
+  background: rgb(255 255 255 / 5%);
+  border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px rgb(0 0 0 / 20%);
+  padding: 2.5rem;
   ${CustomScrollbar}
-  
-  @media (max-width: 1200px) {
+
+  @media (width <= 1200px) {
     padding: 2rem;
   }
-  
-  @media (max-width: 992px) {
+
+  @media (width <= 992px) {
     padding: 1.75rem;
   }
-  
-  @media (max-width: 768px) {
+
+  @media (width <= 768px) {
     padding: 1.5rem;
   }
-  
-  @media (max-width: 576px) {
+
+  @media (width <= 576px) {
     padding: 1.25rem;
   }
 `;
 
 const FormTitle = styled.h3`
+  align-items: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  background-clip: text;
+  display: flex;
   font-size: 1.5rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin: 0 0 2rem 0;
-  display: flex;
-  align-items: center;
   gap: 1rem;
-  text-align: center;
   justify-content: center;
-  
-  @media (max-width: 768px) {
+  margin: 0 0 2rem;
+  text-align: center;
+  -webkit-text-fill-color: transparent;
+
+  @media (width <= 768px) {
     font-size: 1.3rem;
     gap: 0.75rem;
   }
-  
-  @media (max-width: 576px) {
+
+  @media (width <= 576px) {
     font-size: 1.2rem;
     gap: 0.5rem;
   }
@@ -57,214 +56,200 @@ const FormTitle = styled.h3`
 
 const FormGroup = styled.div`
   margin-bottom: 1.75rem;
-  
-  @media (max-width: 768px) {
+
+  @media (width <= 768px) {
     margin-bottom: 1.5rem;
   }
-  
-  @media (max-width: 576px) {
+
+  @media (width <= 576px) {
     margin-bottom: 1.25rem;
   }
 `;
 
 const FormLabel = styled.label`
-  display: block;
+  align-items: center;
+  color: rgb(255 255 255 / 90%);
+  display: flex;
   font-size: 1rem;
   font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: 0.75rem;
-  display: flex;
-  align-items: center;
   gap: 0.75rem;
-  
-  @media (max-width: 768px) {
+  margin-bottom: 0.75rem;
+
+  @media (width <= 768px) {
     font-size: 0.95rem;
     gap: 0.6rem;
   }
-  
-  @media (max-width: 576px) {
+
+  @media (width <= 576px) {
     font-size: 0.9rem;
     gap: 0.5rem;
   }
 `;
 
 const FormInput = styled.input`
-  width: 100%;
-  padding: 1rem 1.25rem;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgb(0 0 0 / 25%);
+  border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 12px;
   color: white;
   font-size: 1.05rem;
+  padding: 1rem 1.25rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  
+  width: 100%;
+
   &:focus {
-    outline: none;
+    background: rgb(0 0 0 / 30%);
     border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
-    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 3px rgb(102 126 234 / 30%);
+    outline: none;
   }
-  
+
   &::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgb(255 255 255 / 50%);
   }
-  
-  @media (max-width: 992px) {
-    padding: 0.875rem 1.125rem;
+
+  @media (width <= 992px) {
     font-size: 1rem;
+    padding: 0.875rem 1.125rem;
   }
-  
-  @media (max-width: 768px) {
-    padding: 0.8rem 1rem;
+
+  @media (width <= 768px) {
     font-size: 0.95rem;
+    padding: 0.8rem 1rem;
   }
-  
-  @media (max-width: 576px) {
-    padding: 0.75rem 0.875rem;
+
+  @media (width <= 576px) {
     font-size: 0.9rem;
+    padding: 0.75rem 0.875rem;
   }
 `;
 
 const FormTextArea = styled.textarea`
-  width: 100%;
-  padding: 1rem 1.25rem;
-  background: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgb(0 0 0 / 25%);
+  border: 1px solid rgb(255 255 255 / 15%);
   border-radius: 12px;
   color: white;
   font-size: 1.05rem;
   min-height: 150px;
+  padding: 1rem 1.25rem;
   resize: vertical;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
   ${CustomScrollbar}
-  
+
   &:focus {
-    outline: none;
+    background: rgb(0 0 0 / 30%);
     border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
-    background: rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0 0 3px rgb(102 126 234 / 30%);
+    outline: none;
   }
-  
+
   &::placeholder {
-    color: rgba(255, 255, 255, 0.5);
+    color: rgb(255 255 255 / 50%);
   }
-  
-  @media (max-width: 992px) {
-    padding: 0.875rem 1.125rem;
+
+  @media (width <= 992px) {
     font-size: 1rem;
     min-height: 130px;
+    padding: 0.875rem 1.125rem;
   }
-  
-  @media (max-width: 768px) {
-    padding: 0.8rem 1rem;
+
+  @media (width <= 768px) {
     font-size: 0.95rem;
     min-height: 120px;
+    padding: 0.8rem 1rem;
   }
-  
-  @media (max-width: 576px) {
-    padding: 0.75rem 0.875rem;
+
+  @media (width <= 576px) {
     font-size: 0.9rem;
     min-height: 110px;
+    padding: 0.75rem 0.875rem;
   }
 `;
 
 const SubmitButton = styled.button`
-  width: 100%;
-  padding: 1.25rem;
+  align-items: center;
   background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
   border: none;
   border-radius: 12px;
-  font-size: 1.1rem;
-  font-weight: 600;
+  color: white;
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  font-size: 1.1rem;
+  font-weight: 600;
   gap: 1rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  justify-content: center;
   overflow: hidden;
-  
+  padding: 1.25rem;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 100%;
+
   &:disabled {
-    opacity: 0.7;
     cursor: not-allowed;
+    opacity: 70%;
     transform: none !important;
   }
-  
+
   &:hover:not(:disabled) {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
-    
+    box-shadow: 0 10px 25px rgb(102 126 234 / 40%);
+
     &::before {
-      opacity: 1;
+      background: linear-gradient(135deg, rgb(255 255 255 / 20%), transparent);
+      content: "";
+      height: 100%;
+      left: 0;
+      opacity: 0%;
+      position: absolute;
+      top: 0;
+      transition: opacity 0.3s ease;
+      width: 100%;
+    }
+
+    &:hover:not(:disabled)::before {
+      opacity: 100%;
     }
   }
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-  }
-  
-  @media (max-width: 992px) {
-    padding: 1.125rem;
+
+  @media (width <= 992px) {
     font-size: 1.05rem;
+    padding: 1.125rem;
   }
-  
-  @media (max-width: 768px) {
-    padding: 1rem;
+
+  @media (width <= 768px) {
     font-size: 1rem;
+    padding: 1rem;
   }
-  
-  @media (max-width: 576px) {
-    padding: 0.875rem;
+
+  @media (width <= 576px) {
     font-size: 0.95rem;
     gap: 0.75rem;
+    padding: 0.875rem;
   }
 `;
 
 const StatusMessage = styled.div<{ success?: boolean }>`
-  padding: 1.25rem;
+  align-items: center;
+  animation: slide-up 0.3s ease-out;
+  background: ${(props) =>
+    props.success ? "rgba(46, 204, 113, 0.15)" : "rgba(231, 76, 60, 0.15)"};
+  border: 1px solid
+    ${(props) =>
+      props.success ? "rgba(46, 204, 113, 0.3)" : "rgba(231, 76, 60, 0.3)"};
   border-radius: 12px;
   display: flex;
-  align-items: center;
   gap: 1rem;
   margin-top: 1.5rem;
-  background: ${props => props.success 
-    ? 'rgba(46, 204, 113, 0.15)' 
-    : 'rgba(231, 76, 60, 0.15)'};
-  border: 1px solid ${props => props.success 
-    ? 'rgba(46, 204, 113, 0.3)' 
-    : 'rgba(231, 76, 60, 0.3)'};
-  animation: slideUp 0.3s ease-out;
-  
-  @keyframes slideUp {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
-  @media (max-width: 768px) {
-    padding: 1rem;
+  padding: 1.25rem;
+
+  @media (width <= 768px) {
     gap: 0.75rem;
+    padding: 1rem;
   }
-  
-  @media (max-width: 576px) {
-    padding: 0.875rem;
+
+  @media (width <= 576px) {
     gap: 0.6rem;
     margin-top: 1rem;
+    padding: 0.875rem;
   }
 `;
 
@@ -272,87 +257,93 @@ const StatusText = styled.div`
   color: white;
   font-size: 1rem;
   font-weight: 500;
-  
-  @media (max-width: 768px) {
+
+  @media (width <= 768px) {
     font-size: 0.95rem;
   }
-  
-  @media (max-width: 576px) {
+
+  @media (width <= 576px) {
     font-size: 0.9rem;
   }
 `;
 
 const SimpleContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: '',
+    email: "",
+    message: "",
+    name: "",
+    subject: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{ success: boolean; message: string } | null>(null);
+  const [submitStatus, setSubmitStatus] = useState<
+    { message: string; success: boolean } | undefined
+  >();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void => {
     const { id, value } = e.target;
-    setFormData(prev => ({ ...prev, [id]: value }));
+    setFormData((prev) => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     setIsSubmitting(true);
-    setSubmitStatus(null);
+    setSubmitStatus(undefined);
 
     try {
       // Send email using EmailJS - Main email to you
-      const result = await emailjs.send(
-        'service_o9j7m4p',
-        'template_jxoz491',
+      await emailjs.send(
+        "service_o9j7m4p",
+        "template_jxoz491",
         {
-          name: formData.name,
           email: formData.email,
-          subject: formData.subject,
           message: formData.message,
-          time: new Date().toLocaleString('pt-PT', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-          }),
+          name: formData.name,
           // This ensures the reply-to is set to the user's email
-          reply_to: formData.email
-        },
-        '_CETS980EBGWXuB6G'
-      );
+          reply_to: formData.email,
 
-      console.log('Email sent successfully:', result);
+          subject: formData.subject,
+
+          time: new Date().toLocaleString("pt-PT", {
+            day: "numeric",
+            hour: "2-digit",
+            minute: "2-digit",
+            month: "long",
+            year: "numeric",
+          }),
+        },
+        "_CETS980EBGWXuB6G"
+      );
 
       // Send auto-reply to the user
       await emailjs.send(
-        'service_o9j7m4p',
-        'template_irxvs6a',
+        "service_o9j7m4p",
+        "template_irxvs6a",
         {
-          name: formData.name,
           email: formData.email,
-          subject: `Re: ${formData.subject}`,
-          message: formData.message,
+          from_email: "contacto@miguelweb.dev",
           // Set from email to your address
-          from_name: "Miguel Moinho Velho",
-          from_email: "miguel@moinho-velho.pt"
+          from_name: "Miguel Santos",
+
+          message: formData.message,
+
+          name: formData.name,
+
+          subject: `Re: ${formData.subject}`,
         },
-        '_CETS980EBGWXuB6G'
+        "_CETS980EBGWXuB6G"
       );
 
       setSubmitStatus({
+        message: "Message sent successfully! I'll get back to you soon.",
         success: true,
-        message: 'Message sent successfully! I\'ll get back to you soon.'
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
-      console.error('EmailJS Error:', error);
+      setFormData({ email: "", message: "", name: "", subject: "" });
+    } catch {
       setSubmitStatus({
+        message: "Failed to send message. Please try again.",
         success: false,
-        message: 'Failed to send message. Please try again.'
       });
     } finally {
       setIsSubmitting(false);
@@ -365,7 +356,7 @@ const SimpleContactForm: React.FC = () => {
         <MessageSquare size={24} />
         Send a Message
       </FormTitle>
-      
+
       <form onSubmit={handleSubmit}>
         <FormGroup>
           <FormLabel htmlFor="name">
@@ -373,67 +364,64 @@ const SimpleContactForm: React.FC = () => {
             Full Name
           </FormLabel>
           <FormInput
-            type="text"
+            disabled={isSubmitting}
             id="name"
-            value={formData.name}
             onChange={handleChange}
             placeholder="Enter your full name"
+            type="text"
+            value={formData.name}
             required
-            disabled={isSubmitting}
           />
         </FormGroup>
-        
+
         <FormGroup>
           <FormLabel htmlFor="email">
             <Mail size={20} />
             Email Address
           </FormLabel>
           <FormInput
-            type="email"
+            disabled={isSubmitting}
             id="email"
-            value={formData.email}
             onChange={handleChange}
             placeholder="your.email@example.com"
+            type="email"
+            value={formData.email}
             required
-            disabled={isSubmitting}
           />
         </FormGroup>
-        
+
         <FormGroup>
           <FormLabel htmlFor="subject">
             <Zap size={20} />
             Subject
           </FormLabel>
           <FormInput
-            type="text"
+            disabled={isSubmitting}
             id="subject"
-            value={formData.subject}
             onChange={handleChange}
             placeholder="What is this regarding?"
+            type="text"
+            value={formData.subject}
             required
-            disabled={isSubmitting}
           />
         </FormGroup>
-        
+
         <FormGroup>
           <FormLabel htmlFor="message">
             <MessageSquare size={20} />
             Your Message
           </FormLabel>
           <FormTextArea
+            disabled={isSubmitting}
             id="message"
-            value={formData.message}
             onChange={handleChange}
             placeholder="Tell me about your project or ask any questions..."
+            value={formData.message}
             required
-            disabled={isSubmitting}
           />
         </FormGroup>
-        
-        <SubmitButton
-          type="submit"
-          disabled={isSubmitting}
-        >
+
+        <SubmitButton disabled={isSubmitting} type="submit">
           {isSubmitting ? (
             <>
               <Send size={20} />
@@ -447,7 +435,7 @@ const SimpleContactForm: React.FC = () => {
           )}
         </SubmitButton>
       </form>
-      
+
       {submitStatus && (
         <StatusMessage success={submitStatus.success}>
           <StatusText>{submitStatus.message}</StatusText>
