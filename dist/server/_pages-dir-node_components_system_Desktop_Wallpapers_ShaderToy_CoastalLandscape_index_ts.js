@@ -1,0 +1,25 @@
+"use strict";
+/*
+ * ATTENTION: An "eval-source-map" devtool has been used.
+ * This devtool is neither made for production nor for readable output files.
+ * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
+ * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
+ * or disable the default devtool with "devtool: false".
+ * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
+ */
+exports.id = "_pages-dir-node_components_system_Desktop_Wallpapers_ShaderToy_CoastalLandscape_index_ts";
+exports.ids = ["_pages-dir-node_components_system_Desktop_Wallpapers_ShaderToy_CoastalLandscape_index_ts"];
+exports.modules = {
+
+/***/ "(pages-dir-node)/./components/system/Desktop/Wallpapers/ShaderToy/CoastalLandscape/index.ts":
+/*!**********************************************************************************!*\
+  !*** ./components/system/Desktop/Wallpapers/ShaderToy/CoastalLandscape/index.ts ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__),\n/* harmony export */   libs: () => (/* binding */ libs)\n/* harmony export */ });\n/* harmony import */ var utils_functions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! utils/functions */ \"(pages-dir-node)/./utils/functions.ts\");\n\nconst libs = [\n    \"/System/ShaderToy/CoastalLandscape/piLibs.js\",\n    \"/System/ShaderToy/CoastalLandscape/effect.js\",\n    \"/System/ShaderToy/CoastalLandscape/init.js\"\n];\nconst CoastalLandscape = async (el)=>{\n    if (!el) return;\n    await (0,utils_functions__WEBPACK_IMPORTED_MODULE_0__.loadFiles)(libs);\n    const canvas = document.createElement(\"canvas\");\n    canvas.height = window.innerHeight;\n    canvas.width = window.innerWidth;\n    window.effectInit(canvas);\n    el.append(canvas);\n};\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (CoastalLandscape);\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiKHBhZ2VzLWRpci1ub2RlKS8uL2NvbXBvbmVudHMvc3lzdGVtL0Rlc2t0b3AvV2FsbHBhcGVycy9TaGFkZXJUb3kvQ29hc3RhbExhbmRzY2FwZS9pbmRleC50cyIsIm1hcHBpbmdzIjoiOzs7Ozs7QUFBNEM7QUFRckMsTUFBTUMsT0FBTztJQUNsQjtJQUNBO0lBQ0E7Q0FDRCxDQUFDO0FBRUYsTUFBTUMsbUJBQW1CLE9BQU9DO0lBQzlCLElBQUksQ0FBQ0EsSUFBSTtJQUVULE1BQU1ILDBEQUFTQSxDQUFDQztJQUVoQixNQUFNRyxTQUFTQyxTQUFTQyxhQUFhLENBQUM7SUFFdENGLE9BQU9HLE1BQU0sR0FBR0MsT0FBT0MsV0FBVztJQUNsQ0wsT0FBT00sS0FBSyxHQUFHRixPQUFPRyxVQUFVO0lBRWhDSCxPQUFPSSxVQUFVLENBQUNSO0lBRWxCRCxHQUFHVSxNQUFNLENBQUNUO0FBQ1o7QUFFQSxpRUFBZUYsZ0JBQWdCQSxFQUFDIiwic291cmNlcyI6WyJDOlxcVXNlcnNcXFVzZXJcXERvY3VtZW50c1xcU2l0ZXNcXFNpdGVzXFxlbSBkZXNlbnZvbHZpbWVudG9cXFBvcnRmb2xpbzJcXGNvbXBvbmVudHNcXHN5c3RlbVxcRGVza3RvcFxcV2FsbHBhcGVyc1xcU2hhZGVyVG95XFxDb2FzdGFsTGFuZHNjYXBlXFxpbmRleC50cyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBsb2FkRmlsZXMgfSBmcm9tIFwidXRpbHMvZnVuY3Rpb25zXCI7XHJcblxyXG5kZWNsYXJlIGdsb2JhbCB7XHJcbiAgaW50ZXJmYWNlIFdpbmRvdyB7XHJcbiAgICBlZmZlY3RJbml0OiAoY2FudmFzOiBIVE1MQ2FudmFzRWxlbWVudCkgPT4gdm9pZDtcclxuICB9XHJcbn1cclxuXHJcbmV4cG9ydCBjb25zdCBsaWJzID0gW1xyXG4gIFwiL1N5c3RlbS9TaGFkZXJUb3kvQ29hc3RhbExhbmRzY2FwZS9waUxpYnMuanNcIixcclxuICBcIi9TeXN0ZW0vU2hhZGVyVG95L0NvYXN0YWxMYW5kc2NhcGUvZWZmZWN0LmpzXCIsXHJcbiAgXCIvU3lzdGVtL1NoYWRlclRveS9Db2FzdGFsTGFuZHNjYXBlL2luaXQuanNcIixcclxuXTtcclxuXHJcbmNvbnN0IENvYXN0YWxMYW5kc2NhcGUgPSBhc3luYyAoZWw/OiBIVE1MRWxlbWVudCB8IG51bGwpOiBQcm9taXNlPHZvaWQ+ID0+IHtcclxuICBpZiAoIWVsKSByZXR1cm47XHJcblxyXG4gIGF3YWl0IGxvYWRGaWxlcyhsaWJzKTtcclxuXHJcbiAgY29uc3QgY2FudmFzID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudChcImNhbnZhc1wiKTtcclxuXHJcbiAgY2FudmFzLmhlaWdodCA9IHdpbmRvdy5pbm5lckhlaWdodDtcclxuICBjYW52YXMud2lkdGggPSB3aW5kb3cuaW5uZXJXaWR0aDtcclxuXHJcbiAgd2luZG93LmVmZmVjdEluaXQoY2FudmFzKTtcclxuXHJcbiAgZWwuYXBwZW5kKGNhbnZhcyk7XHJcbn07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBDb2FzdGFsTGFuZHNjYXBlO1xyXG4iXSwibmFtZXMiOlsibG9hZEZpbGVzIiwibGlicyIsIkNvYXN0YWxMYW5kc2NhcGUiLCJlbCIsImNhbnZhcyIsImRvY3VtZW50IiwiY3JlYXRlRWxlbWVudCIsImhlaWdodCIsIndpbmRvdyIsImlubmVySGVpZ2h0Iiwid2lkdGgiLCJpbm5lcldpZHRoIiwiZWZmZWN0SW5pdCIsImFwcGVuZCJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///(pages-dir-node)/./components/system/Desktop/Wallpapers/ShaderToy/CoastalLandscape/index.ts\n");
+
+/***/ })
+
+};
+;
