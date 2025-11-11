@@ -45,7 +45,7 @@ const nextConfig = {
     },
   ],
   output: "export",
-  distDir: "dist",
+  distDir: "out",
   productionBrowserSourceMaps: false,
   reactProductionProfiling: false,
   reactStrictMode: !isProduction,
