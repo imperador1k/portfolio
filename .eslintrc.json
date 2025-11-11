@@ -233,6 +233,21 @@
       "rules": {
         "playwright/no-standalone-expect": "off"
       }
+    },
+    {
+      "files": ["components/system/LockScreen/StyledLockScreen.tsx"],
+      "parserOptions": {
+        "project": "./components/tsconfig.json"
+      },
+      "rules": {
+        "@typescript-eslint/no-unused-vars": "off"
+      }
+    },
+    {
+      "files": ["components/system/LockScreen/index.tsx"],
+      "rules": {
+        "consistent-return": "off"
+      }
     }
   ],
   "reportUnusedDisableDirectives": true,

@@ -11,8 +11,16 @@ const LockScreen = (): React.ReactElement | null => {
     // Update time and date
     const updateTime = (): void => {
       const now = new Date();
-      setTime(now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
-      setDate(now.toLocaleDateString([], { day: "numeric", month: "long", weekday: "long" }));
+      setTime(
+        now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })
+      );
+      setDate(
+        now.toLocaleDateString([], {
+          day: "numeric",
+          month: "long",
+          weekday: "long",
+        })
+      );
     };
 
     updateTime();
@@ -27,7 +35,8 @@ const LockScreen = (): React.ReactElement | null => {
 
     // Add a smooth fade-out effect
     if (lockScreen?.style) {
-      lockScreen.style.transition = "opacity 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53)";
+      lockScreen.style.transition =
+        "opacity 0.6s cubic-bezier(0.55, 0.085, 0.68, 0.53)";
       lockScreen.style.opacity = "0";
     }
 
@@ -58,7 +67,9 @@ const LockScreen = (): React.ReactElement | null => {
       }
 
       // Remove lock screen from DOM
-      lockScreen.parentElement && lockScreen.remove();
+      if (lockScreen.parentElement) {
+        lockScreen.remove();
+      }
 
       // Set a flag in localStorage to indicate lock screen is complete
       localStorage.setItem("lockScreenComplete", "true");
@@ -83,7 +94,8 @@ const LockScreen = (): React.ReactElement | null => {
         // Trigger fade-in animation
         setTimeout(() => {
           if (lockScreen?.style) {
-            lockScreen.style.transition = "opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            lockScreen.style.transition =
+              "opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
             lockScreen.style.opacity = "1";
           }
         }, 10);
@@ -96,7 +108,12 @@ const LockScreen = (): React.ReactElement | null => {
       if (e.altKey || e.ctrlKey || e.metaKey) return;
 
       // Move to next stage or unlock
-      if ((e.key?.length === 1) || e.key === "Enter" || e.key === "Escape" || e.key === " ") {
+      if (
+        e.key?.length === 1 ||
+        e.key === "Enter" ||
+        e.key === "Escape" ||
+        e.key === " "
+      ) {
         if (stage === 1) {
           setStage(2); // Move to user info stage
         } else if (stage === 2) {
@@ -114,7 +131,7 @@ const LockScreen = (): React.ReactElement | null => {
     }
 
     // Clean up function
-    return () => {
+    return (): void => {
       window.removeEventListener("bootComplete", handleBootComplete);
       window.removeEventListener("keydown", handleKeyDown);
     };
@@ -129,10 +146,10 @@ const LockScreen = (): React.ReactElement | null => {
   };
 
   return (
-    <StyledLockScreen 
+    <StyledLockScreen
       ref={lockScreenRef}
       className={stage === 2 ? "stage-2" : "stage-1"}
-      id="lock-screen" 
+      id="lock-screen"
       onClick={handleStageTransition}
     >
       <div className="lock-screen-content">
@@ -140,29 +157,36 @@ const LockScreen = (): React.ReactElement | null => {
           <div className="time">{time}</div>
           <div className="date">{date}</div>
         </div>
-        
+
         <div className="user-info">
           <div className="user-avatar">
-            <img 
-              alt="User Avatar" 
+            <img
+              alt="User Avatar"
               draggable={false}
               height={140}
               loading="eager"
-              src="/Users/Public/Pictures/about-me.png" 
+              src="/Users/Public/Pictures/about-me.png"
               width={140}
             />
           </div>
           <div className="unlock-arrow">
-            <svg fill="none" height={24} viewBox="0 0 24 24" width={24} xmlns="http://www.w3.org/2000/svg">
-              <path d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z" fill="white"/>
+            <svg
+              fill="none"
+              height={24}
+              viewBox="0 0 24 24"
+              width={24}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M8.59 16.59L13.17 12L8.59 7.41L10 6L16 12L10 18L8.59 16.59Z"
+                fill="white"
+              />
             </svg>
           </div>
         </div>
       </div>
-      
-      {stage === 1 && (
-        <div className="unlock-hint">Click or press any key</div>
-      )}
+
+      {stage === 1 && <div className="unlock-hint">Click or press any key</div>}
     </StyledLockScreen>
   );
 };
