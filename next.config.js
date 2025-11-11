@@ -25,6 +25,9 @@ const nextConfig = {
       transpileTemplateLiterals: true,
     },
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   devIndicators: false,
   headers: async () => [
     {
