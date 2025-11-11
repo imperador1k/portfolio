@@ -1,33 +1,52 @@
 import { memo, useRef, useState } from "react";
-import StyledProjects from "./StyledProjects";
-import { type ComponentProcessProps } from "components/system/Apps/RenderComponent";
+import  { type ComponentProcessProps } from "components/system/Apps/RenderComponent";
+import StyledProjects from "components/apps/Projects/StyledProjects";
 import useTitle from "components/system/Window/useTitle";
-import Icons from "./Icons";
+import Icons from "components/apps/Projects/Icons";
 
-const Projects: FC<ComponentProcessProps> = ({ id }) => {
+interface Project {
+  achievements: string[];
+  challenges: {
+    challenge: string;
+    solution: string;
+  }[];
+  description: string;
+  details: {
+    duration: string;
+    teamSize: string;
+  };
+  id: number;
+  image: string;
+  keyFeatures: string[];
+  metrics: Record<string, string>;
+  status: string;
+  techStack: {
+    backend: string[];
+    database: string[];
+    frontend: string[];
+    tools: string[];
+  };
+  title: string;
+}
+
+interface ChallengeItem {
+  challenge: string;
+  solution: string;
+}
+
+const Projects: React.FC<ComponentProcessProps> = ({ id }) => {
   const projectsRef = useRef<HTMLDivElement>(null);
   useTitle(id);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<Project>();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const projects = [
+  const projects: Project[] = [
     {
-      id: 1,
-      title: "Diet & Fitness App",
-      status: "completed",
-      description: "Comprehensive calorie counting app with gamification, premium features, and personalized meal plans for healthy lifestyle management",
-      image: "/System/Icons/fitness.webp",
-      details: {
-        duration: "1 month",
-        teamSize: "Solo"
-      },
-      keyFeatures: [
-        "Real-time calorie tracking with barcode scanning",
-        "Gamification system with achievements and streaks",
-        "Personalized meal plans based on dietary preferences",
-        "Premium subscription with advanced analytics",
-        "Social features for sharing progress with friends",
-        "Integration with fitness trackers and wearables"
+      achievements: [
+        "Achieved 4.8/5 rating on app stores",
+        "Successfully processed over 10,000 premium subscriptions",
+        "Reduced app loading time by 40% through optimization",
+        "Implemented secure payment processing with 99.9% uptime"
       ],
       challenges: [
         {
@@ -47,41 +66,41 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
           solution: "Implemented lazy loading and code splitting for optimal performance"
         }
       ],
-      achievements: [
-        "Achieved 4.8/5 rating on app stores",
-        "Successfully processed over 10,000 premium subscriptions",
-        "Reduced app loading time by 40% through optimization",
-        "Implemented secure payment processing with 99.9% uptime"
-      ],
-      techStack: {
-        frontend: ["React Native", "Redux", "React Navigation", "Styled Components"],
-        backend: ["Node.js", "Express", "MongoDB", "Mongoose"],
-        database: ["MongoDB", "Redis", "Cloudinary"],
-        tools: ["Stripe", "Firebase", "Jest", "GitHub Actions"]
-      },
-      metrics: {
-        uptime: "98%",
-        users: "5,000+",
-        rating: "4.8/5"
-      }
-    },
-    {
-      id: 2,
-      title: "Smart Shopping List App",
-      status: "completed",
-      description: "Intelligent shopping list with chat functionality, group sharing, and reusable templates for efficient grocery management",
-      image: "/System/Icons/shopping.webp",
+      description: "Comprehensive calorie counting app with gamification, premium features, and personalized meal plans for healthy lifestyle management",
       details: {
         duration: "1 month",
         teamSize: "Solo"
       },
+      id: 1,
+      image: "/System/Icons/fitness.webp",
       keyFeatures: [
-        "Real-time collaborative shopping lists",
-        "Smart item categorization and suggestions",
-        "Group chat functionality for family coordination",
-        "Voice-to-text item addition",
-        "Location-based store recommendations",
-        "Price comparison and budget tracking"
+        "Real-time calorie tracking with barcode scanning",
+        "Gamification system with achievements and streaks",
+        "Personalized meal plans based on dietary preferences",
+        "Premium subscription with advanced analytics",
+        "Social features for sharing progress with friends",
+        "Integration with fitness trackers and wearables"
+      ],
+      metrics: {
+        rating: "4.8/5",
+        uptime: "98%",
+        users: "5,000+"
+      },
+      status: "completed",
+      techStack: {
+        backend: ["Node.js", "Express", "MongoDB", "Mongoose"],
+        database: ["MongoDB", "Redis", "Cloudinary"],
+        frontend: ["React Native", "Redux", "React Navigation", "Styled Components"],
+        tools: ["Stripe", "Firebase", "Jest", "GitHub Actions"]
+      },
+      title: "Diet & Fitness App"
+    },
+    {
+      achievements: [
+        "Successfully implemented real-time synchronization across devices",
+        "Achieved 99.5% message delivery rate in chat functionality",
+        "Reduced shopping time by 30% for regular users",
+        "Maintained zero data loss during concurrent user sessions"
       ],
       challenges: [
         {
@@ -101,41 +120,41 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
           solution: "Implemented conflict resolution algorithms with timestamps"
         }
       ],
-      achievements: [
-        "Successfully implemented real-time synchronization across devices",
-        "Achieved 99.5% message delivery rate in chat functionality",
-        "Reduced shopping time by 30% for regular users",
-        "Maintained zero data loss during concurrent user sessions"
-      ],
-      techStack: {
-        frontend: ["React Native", "Redux", "React Navigation", "Native Base"],
-        backend: ["Firebase", "Cloud Functions", "Firestore"],
-        database: ["Firestore", "Firebase Storage"],
-        tools: ["Firebase Analytics", "Crashlytics", "GitHub", "VS Code"]
-      },
-      metrics: {
-        uptime: "99.5%",
-        users: "2,500+",
-        rating: "4.6/5"
-      }
-    },
-    {
-      id: 3,
-      title: "Moinho Accommodation Website",
-      status: "completed",
-      description: "Professional website for a local accommodation in Portugal featuring booking system, gallery, and responsive design",
-      image: "/System/Icons/hotel.webp",
+      description: "Intelligent shopping list with chat functionality, group sharing, and reusable templates for efficient grocery management",
       details: {
-        duration: "3 weeks",
+        duration: "1 month",
         teamSize: "Solo"
       },
+      id: 2,
+      image: "/System/Icons/shopping.webp",
       keyFeatures: [
-        "Responsive design optimized for all devices",
-        "Online booking system with calendar integration",
-        "High-quality image gallery with lightbox functionality",
-        "Contact form with email notifications",
-        "SEO optimization for better search rankings",
-        "Multi-language support (Portuguese/English)"
+        "Real-time collaborative shopping lists",
+        "Smart item categorization and suggestions",
+        "Group chat functionality for family coordination",
+        "Voice-to-text item addition",
+        "Location-based store recommendations",
+        "Price comparison and budget tracking"
+      ],
+      metrics: {
+        rating: "4.6/5",
+        uptime: "99.5%",
+        users: "2,500+"
+      },
+      status: "completed",
+      techStack: {
+        backend: ["Firebase", "Cloud Functions", "Firestore"],
+        database: ["Firestore", "Firebase Storage"],
+        frontend: ["React Native", "Redux", "React Navigation", "Native Base"],
+        tools: ["Firebase Analytics", "Crashlytics", "GitHub", "VS Code"]
+      },
+      title: "Smart Shopping List App"
+    },
+    {
+      achievements: [
+        "Increased online bookings by 150% within first month",
+        "Achieved 95+ Google PageSpeed score",
+        "Successfully integrated with local payment systems",
+        "Reduced bounce rate by 40% through improved UX"
       ],
       challenges: [
         {
@@ -155,41 +174,41 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
           solution: "Created custom API connectors with caching mechanisms"
         }
       ],
-      achievements: [
-        "Increased online bookings by 150% within first month",
-        "Achieved 95+ Google PageSpeed score",
-        "Successfully integrated with local payment systems",
-        "Reduced bounce rate by 40% through improved UX"
-      ],
-      techStack: {
-        frontend: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "jQuery"],
-        backend: ["PHP", "MySQL", "Apache"],
-        database: ["MySQL", "phpMyAdmin"],
-        tools: ["Git", "VS Code", "Google Analytics", "Google Maps API"]
-      },
-      metrics: {
-        pagespeed: "95+",
-        visitors: "500+",
-        rating: "4.9/5"
-      }
-    },
-    {
-      id: 4,
-      title: "Vacation Apartment Website",
-      status: "completed",
-      description: "Modern tourism website for vacation rental with online booking, payment integration, and customer reviews system",
-      image: "/System/Icons/vacation.webp",
+      description: "Professional website for a local accommodation in Portugal featuring booking system, gallery, and responsive design",
       details: {
         duration: "3 weeks",
         teamSize: "Solo"
       },
+      id: 3,
+      image: "/System/Icons/hotel.webp",
       keyFeatures: [
-        "Custom WordPress theme with modern design",
-        "WooCommerce integration for booking management",
-        "Multiple payment gateway support (PayPal, Stripe, Bank Transfer)",
-        "Customer review and rating system",
-        "Automated email notifications for bookings",
-        "Mobile-responsive design with touch-friendly interface"
+        "Responsive design optimized for all devices",
+        "Online booking system with calendar integration",
+        "High-quality image gallery with lightbox functionality",
+        "Contact form with email notifications",
+        "SEO optimization for better search rankings",
+        "Multi-language support (Portuguese/English)"
+      ],
+      metrics: {
+        pagespeed: "95+",
+        rating: "4.9/5",
+        visitors: "500+"
+      },
+      status: "completed",
+      techStack: {
+        backend: ["PHP", "MySQL", "Apache"],
+        database: ["MySQL", "phpMyAdmin"],
+        frontend: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "jQuery"],
+        tools: ["Git", "VS Code", "Google Analytics", "Google Maps API"]
+      },
+      title: "Moinho Accommodation Website"
+    },
+    {
+      achievements: [
+        "Reduced booking processing time by 70%",
+        "Achieved 100% payment success rate",
+        "Increased customer satisfaction scores by 25%",
+        "Successfully handled 200+ concurrent bookings during peak season"
       ],
       challenges: [
         {
@@ -209,41 +228,41 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
           solution: "Built custom review system with admin approval workflow"
         }
       ],
-      achievements: [
-        "Reduced booking processing time by 70%",
-        "Achieved 100% payment success rate",
-        "Increased customer satisfaction scores by 25%",
-        "Successfully handled 200+ concurrent bookings during peak season"
-      ],
-      techStack: {
-        frontend: ["WordPress", "PHP", "CSS3", "JavaScript", "jQuery"],
-        backend: ["WordPress", "WooCommerce", "MySQL"],
-        database: ["MySQL", "WordPress Database"],
-        tools: ["cPanel", "FileZilla", "Google Analytics", "MailChimp"]
-      },
-      metrics: {
-        uptime: "99%",
-        visitors: "1,200+",
-        rating: "4.7/5"
-      }
-    },
-    {
-      id: 5,
-      title: "Burger Restaurant Website",
-      status: "completed",
-      description: "Academic project featuring a complete restaurant website with menu, online ordering, and customer feedback system",
-      image: "/System/Icons/restaurant.webp",
+      description: "Modern tourism website for vacation rental with online booking, payment integration, and customer reviews system",
       details: {
-        duration: "2 weeks",
+        duration: "3 weeks",
         teamSize: "Solo"
       },
+      id: 4,
+      image: "/System/Icons/vacation.webp",
       keyFeatures: [
-        "Interactive menu with detailed item descriptions",
-        "Online ordering system with cart functionality",
-        "Customer feedback and rating system",
-        "Admin dashboard for order management",
-        "Responsive design for mobile and desktop",
-        "Integration with social media platforms"
+        "Custom WordPress theme with modern design",
+        "WooCommerce integration for booking management",
+        "Multiple payment gateway support (PayPal, Stripe, Bank Transfer)",
+        "Customer review and rating system",
+        "Automated email notifications for bookings",
+        "Mobile-responsive design with touch-friendly interface"
+      ],
+      metrics: {
+        rating: "4.7/5",
+        uptime: "99%",
+        visitors: "1,200+"
+      },
+      status: "completed",
+      techStack: {
+        backend: ["WordPress", "WooCommerce", "MySQL"],
+        database: ["MySQL", "WordPress Database"],
+        frontend: ["WordPress", "PHP", "CSS3", "JavaScript", "jQuery"],
+        tools: ["cPanel", "FileZilla", "Google Analytics", "MailChimp"]
+      },
+      title: "Vacation Apartment Website"
+    },
+    {
+      achievements: [
+        "Received highest grade in the academic project (18/20)",
+        "Successfully demonstrated all required functionalities",
+        "Created intuitive user experience praised by professors",
+        "Implemented secure data handling and validation"
       ],
       challenges: [
         {
@@ -263,41 +282,41 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
           solution: "Built custom feedback system with database storage and admin panel"
         }
       ],
-      achievements: [
-        "Received highest grade in the academic project (18/20)",
-        "Successfully demonstrated all required functionalities",
-        "Created intuitive user experience praised by professors",
-        "Implemented secure data handling and validation"
-      ],
-      techStack: {
-        frontend: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "jQuery"],
-        backend: ["PHP", "MySQL", "Apache"],
-        database: ["MySQL", "phpMyAdmin"],
-        tools: ["Git", "VS Code", "XAMPP", "Adobe Photoshop"]
-      },
-      metrics: {
-        rating: "Academic project",
-        demo: "Class demonstration",
-        score: "4.5/5"
-      }
-    },
-    {
-      id: 6,
-      title: "Personal Training App",
-      status: "in-progress",
-      description: "Custom workout app with video tutorials, progress tracking, and personalized training plans for fitness enthusiasts",
-      image: "/System/Icons/training.webp",
+      description: "Academic project featuring a complete restaurant website with menu, online ordering, and customer feedback system",
       details: {
-        duration: "2 months",
+        duration: "2 weeks",
         teamSize: "Solo"
       },
+      id: 5,
+      image: "/System/Icons/restaurant.webp",
       keyFeatures: [
-        "High-quality video workout tutorials",
-        "Personalized training plans based on fitness level",
-        "Progress tracking with detailed analytics",
-        "Social features for sharing achievements",
-        "Offline mode for downloaded workouts",
-        "Integration with fitness trackers and wearables"
+        "Interactive menu with detailed item descriptions",
+        "Online ordering system with cart functionality",
+        "Customer feedback and rating system",
+        "Admin dashboard for order management",
+        "Responsive design for mobile and desktop",
+        "Integration with social media platforms"
+      ],
+      metrics: {
+        demo: "Class demonstration",
+        rating: "Academic project",
+        score: "4.5/5"
+      },
+      status: "completed",
+      techStack: {
+        backend: ["PHP", "MySQL", "Apache"],
+        database: ["MySQL", "phpMyAdmin"],
+        frontend: ["HTML5", "CSS3", "JavaScript", "Bootstrap", "jQuery"],
+        tools: ["Git", "VS Code", "XAMPP", "Adobe Photoshop"]
+      },
+      title: "Burger Restaurant Website"
+    },
+    {
+      achievements: [
+        "Successfully implemented video streaming with 99% reliability",
+        "Created intuitive progress tracking system",
+        "Developed personalized algorithm for workout recommendations",
+        "Achieved smooth performance on low-end devices"
       ],
       challenges: [
         {
@@ -317,34 +336,45 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
           solution: "Implemented caching and lazy loading for video content"
         }
       ],
-      achievements: [
-        "Successfully implemented video streaming with 99% reliability",
-        "Created intuitive progress tracking system",
-        "Developed personalized algorithm for workout recommendations",
-        "Achieved smooth performance on low-end devices"
+      description: "Custom workout app with video tutorials, progress tracking, and personalized training plans for fitness enthusiasts",
+      details: {
+        duration: "2 months",
+        teamSize: "Solo"
+      },
+      id: 6,
+      image: "/System/Icons/training.webp",
+      keyFeatures: [
+        "High-quality video workout tutorials",
+        "Personalized training plans based on fitness level",
+        "Progress tracking with detailed analytics",
+        "Social features for sharing achievements",
+        "Offline mode for downloaded workouts",
+        "Integration with fitness trackers and wearables"
       ],
+      metrics: {
+        rating: "4.2/5",
+        status: "In development",
+        testing: "Beta testing"
+      },
+      status: "in-progress",
       techStack: {
-        frontend: ["React Native", "Expo", "Redux", "React Navigation"],
         backend: ["Firebase", "Cloud Functions", "Firestore"],
         database: ["Firestore", "Firebase Storage"],
+        frontend: ["React Native", "Expo", "Redux", "React Navigation"],
         tools: ["Expo CLI", "Firebase Console", "GitHub", "VS Code"]
       },
-      metrics: {
-        status: "In development",
-        testing: "Beta testing",
-        rating: "4.2/5"
-      }
+      title: "Personal Training App"
     }
   ];
 
-  const openModal = (project: any) => {
+  const openModal = (project: Project): void => {
     setSelectedProject(project);
     setIsModalOpen(true);
   };
 
-  const closeModal = () => {
+  const closeModal = (): void => {
     setIsModalOpen(false);
-    setSelectedProject(null);
+    setSelectedProject(undefined);
   };
 
   return (
@@ -360,18 +390,26 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
         <div className="projects-grid">
           {projects.map((project) => (
             <div 
-              className="project-card" 
-              key={project.id}
+              key={project.id} 
+              className="project-card"
               onClick={() => openModal(project)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  openModal(project);
+                }
+              }}
+              role="button"
+              tabIndex={0}
             >
               <div className="project-header">
                 <div className="project-image">
-                  <img src={project.image} alt={project.title} />
+                  <img alt={project.title} src={project.image} />
                 </div>
                 <div className="project-info">
                   <h2 className="project-title">{project.title}</h2>
-                  <span className={`project-status ${project.status === 'completed' ? 'completed' : 'in-progress'}`}>
-                    {project.status === 'completed' ? 'Completed' : 'In Progress'}
+                  <span className={`project-status ${project.status === "completed" ? "completed" : "in-progress"}`}>
+                    {project.status === "completed" ? "Completed" : "In Progress"}
                   </span>
                 </div>
               </div>
@@ -402,18 +440,18 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <button className="modal-close" onClick={closeModal}>
+              <button className="modal-close" onClick={closeModal} type="button">
                 <Icons.Check />
               </button>
               
               <div className="modal-project-header">
                 <div className="modal-project-image">
-                  <img src={selectedProject.image} alt={selectedProject.title} />
+                  <img alt={selectedProject.title} src={selectedProject.image} />
                 </div>
                 <div className="modal-project-info">
                   <h2 className="modal-project-title">{selectedProject.title}</h2>
-                  <span className={`project-status ${selectedProject.status === 'completed' ? 'completed' : 'in-progress'}`}>
-                    {selectedProject.status === 'completed' ? 'Completed' : 'In Progress'}
+                  <span className={`project-status ${selectedProject.status === "completed" ? "completed" : "in-progress"}`}>
+                    {selectedProject.status === "completed" ? "Completed" : "In Progress"}
                   </span>
                 </div>
               </div>
@@ -445,7 +483,8 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
                 </div>
                 <ul className="features-list">
                   {selectedProject.keyFeatures.map((feature: string, index: number) => (
-                    <li key={index}>{feature}</li>
+                    // Using a more unique key
+                    <li key={`${selectedProject.id}-feature-${index}`}>{feature}</li>
                   ))}
                 </ul>
               </div>
@@ -456,8 +495,9 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
                   <h3>Challenges & Solutions</h3>
                 </div>
                 <div className="challenges-list">
-                  {selectedProject.challenges.map((item: any, index: number) => (
-                    <div className="challenge-item" key={index}>
+                  {selectedProject.challenges.map((item: ChallengeItem, index: number) => (
+                    // Using a more unique key
+                    <div key={`${selectedProject.id}-challenge-${index}`} className="challenge-item">
                       <div className="challenge-header">
                         <span className="challenge-number">#{index + 1}</span>
                         <h4 className="challenge-title">{item.challenge}</h4>
@@ -475,7 +515,8 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
                 </div>
                 <ul className="achievements-list">
                   {selectedProject.achievements.map((achievement: string, index: number) => (
-                    <li key={index}>{achievement}</li>
+                    // Using a more unique key
+                    <li key={`${selectedProject.id}-achievement-${index}`}>{achievement}</li>
                   ))}
                 </ul>
               </div>
@@ -490,7 +531,8 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
                     <h4>Frontend</h4>
                     <ul className="tech-list">
                       {selectedProject.techStack.frontend.map((tech: string, index: number) => (
-                        <li key={index}>{tech}</li>
+                        // Using a more unique key
+                        <li key={`${selectedProject.id}-frontend-${index}`}>{tech}</li>
                       ))}
                     </ul>
                   </div>
@@ -498,7 +540,8 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
                     <h4>Backend</h4>
                     <ul className="tech-list">
                       {selectedProject.techStack.backend.map((tech: string, index: number) => (
-                        <li key={index}>{tech}</li>
+                        // Using a more unique key
+                        <li key={`${selectedProject.id}-backend-${index}`}>{tech}</li>
                       ))}
                     </ul>
                   </div>
@@ -506,7 +549,8 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
                     <h4>Database</h4>
                     <ul className="tech-list">
                       {selectedProject.techStack.database.map((tech: string, index: number) => (
-                        <li key={index}>{tech}</li>
+                        // Using a more unique key
+                        <li key={`${selectedProject.id}-database-${index}`}>{tech}</li>
                       ))}
                     </ul>
                   </div>
@@ -514,7 +558,8 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
                     <h4>Tools</h4>
                     <ul className="tech-list">
                       {selectedProject.techStack.tools.map((tech: string, index: number) => (
-                        <li key={index}>{tech}</li>
+                        // Using a more unique key
+                        <li key={`${selectedProject.id}-tool-${index}`}>{tech}</li>
                       ))}
                     </ul>
                   </div>
@@ -528,8 +573,9 @@ const Projects: FC<ComponentProcessProps> = ({ id }) => {
                 </div>
                 <div className="metrics-grid">
                   {Object.entries(selectedProject.metrics).map(([key, value], index) => (
-                    <div className="metric-item" key={index}>
-                      <span className="metric-value">{String(value)}</span>
+                    // Using a more unique key
+                    <div key={`${selectedProject.id}-metric-${index}`} className="metric-item">
+                      <span className="metric-value">{value}</span>
                       <span className="metric-label">{key}</span>
                     </div>
                   ))}

@@ -1,3 +1,4 @@
-import TestApp from "./TestApp";
 
-export default TestApp;
+
+
+export {default} from "./TestApp";

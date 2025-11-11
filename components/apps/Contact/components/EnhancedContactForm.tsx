@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Send, User, Mail, MessageSquare, Zap, CheckCircle, AlertCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import styled from 'styled-components';
 import { m as motion, AnimatePresence } from 'motion/react';
 
@@ -135,13 +135,13 @@ const StatusText = styled.div`
 
 const EnhancedContactForm: React.FC = () => {
   const [formData, setFormData] = useState({
-    name: '',
     email: '',
-    subject: '',
     message: '',
+    name: '',
+    subject: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<{ success: boolean; message: string } | null>(null);
+  const [submitStatus, setSubmitStatus] = useState<{ message: string, success: boolean; } | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { id, value } = e.target;
@@ -159,16 +159,16 @@ const EnhancedContactForm: React.FC = () => {
         'service_o9j7m4p',
         'template_jxoz491',
         {
-          name: formData.name,
           email: formData.email,
-          subject: formData.subject,
           message: formData.message,
+          name: formData.name,
+          subject: formData.subject,
           time: new Date().toLocaleString('pt-PT', {
-            year: 'numeric',
-            month: 'long',
             day: 'numeric',
             hour: '2-digit',
-            minute: '2-digit'
+            minute: '2-digit',
+            month: 'long',
+            year: 'numeric'
           })
         },
         '_CETS980EBGWXuB6G'
@@ -181,24 +181,24 @@ const EnhancedContactForm: React.FC = () => {
         'service_o9j7m4p',
         'template_irxvs6a',
         {
-          name: formData.name,
           email: formData.email,
-          subject: formData.subject,
-          message: formData.message
+          message: formData.message,
+          name: formData.name,
+          subject: formData.subject
         },
         '_CETS980EBGWXuB6G'
       );
 
       setSubmitStatus({
-        success: true,
-        message: 'Message sent successfully! I\'ll get back to you soon.'
+        message: 'Message sent successfully! I\'ll get back to you soon.',
+        success: true
       });
-      setFormData({ name: '', email: '', subject: '', message: '' });
+      setFormData({ email: '', message: '', name: '', subject: '' });
     } catch (error) {
       console.error('EmailJS Error:', error);
       setSubmitStatus({
-        success: false,
-        message: 'Failed to send message. Please try again.'
+        message: 'Failed to send message. Please try again.',
+        success: false
       });
     } finally {
       setIsSubmitting(false);
@@ -219,13 +219,13 @@ const EnhancedContactForm: React.FC = () => {
             Full Name
           </FormLabel>
           <FormInput
-            type="text"
+            disabled={isSubmitting}
             id="name"
-            value={formData.name}
             onChange={handleChange}
             placeholder="Enter your full name"
+            type="text"
+            value={formData.name}
             required
-            disabled={isSubmitting}
           />
         </FormGroup>
         
@@ -235,13 +235,13 @@ const EnhancedContactForm: React.FC = () => {
             Email Address
           </FormLabel>
           <FormInput
-            type="email"
+            disabled={isSubmitting}
             id="email"
-            value={formData.email}
             onChange={handleChange}
             placeholder="your.email@example.com"
+            type="email"
+            value={formData.email}
             required
-            disabled={isSubmitting}
           />
         </FormGroup>
         
@@ -251,13 +251,13 @@ const EnhancedContactForm: React.FC = () => {
             Subject
           </FormLabel>
           <FormInput
-            type="text"
+            disabled={isSubmitting}
             id="subject"
-            value={formData.subject}
             onChange={handleChange}
             placeholder="What is this regarding?"
+            type="text"
+            value={formData.subject}
             required
-            disabled={isSubmitting}
           />
         </FormGroup>
         
@@ -267,18 +267,18 @@ const EnhancedContactForm: React.FC = () => {
             Your Message
           </FormLabel>
           <FormTextArea
+            disabled={isSubmitting}
             id="message"
-            value={formData.message}
             onChange={handleChange}
             placeholder="Tell me about your project or ask any questions..."
+            value={formData.message}
             required
-            disabled={isSubmitting}
           />
         </FormGroup>
         
         <SubmitButton
-          type="submit"
           disabled={isSubmitting}
+          type="submit"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
@@ -286,7 +286,7 @@ const EnhancedContactForm: React.FC = () => {
             <>
               <motion.div
                 animate={{ rotate: 360 }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                transition={{ duration: 1, ease: "linear", repeat: Infinity }}
               >
                 <Send size={18} />
               </motion.div>
@@ -304,10 +304,10 @@ const EnhancedContactForm: React.FC = () => {
       <AnimatePresence>
         {submitStatus && (
           <StatusMessage
-            success={submitStatus.success}
-            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: 10 }}
+            success={submitStatus.success}
           >
             <StatusIcon success={submitStatus.success}>
               {submitStatus.success ? <CheckCircle size={20} /> : <AlertCircle size={20} />}
@@ -321,11 +321,11 @@ const EnhancedContactForm: React.FC = () => {
         position="bottom-center"
         toastOptions={{
           style: {
+            backdropFilter: 'blur(10px)',
             background: 'rgba(30, 30, 46, 0.9)',
-            color: '#fff',
             border: '1px solid rgba(255, 255, 255, 0.1)',
             borderRadius: '12px',
-            backdropFilter: 'blur(10px)',
+            color: '#fff',
           },
         }}
       />

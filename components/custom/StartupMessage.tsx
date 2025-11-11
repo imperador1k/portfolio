@@ -284,8 +284,8 @@ const StartupMessage: FC = () => {
           }
         `;
         
-        document.head.appendChild(style);
-        document.body.appendChild(modal);
+        document.head.append(style);
+        document.body.append(modal);
         
         // Fade in the modal
         setTimeout(() => {
@@ -295,8 +295,8 @@ const StartupMessage: FC = () => {
         }, 10);
         
         // Add event listeners for buttons
-        const closeBtn = document.getElementById("close-message");
-        const exploreBtn = document.getElementById("explore-btn");
+        const closeBtn = document.querySelector("#close-message");
+        const exploreBtn = document.querySelector("#explore-btn");
         
         const handleClose = () => {
           // Fade out before removing
@@ -307,10 +307,10 @@ const StartupMessage: FC = () => {
           setTimeout(() => {
             localStorage.setItem("hasSeenStartupMessage", "true");
             if (modal && modal.parentNode) {
-              modal.parentNode.removeChild(modal);
+              modal.remove();
             }
             if (style && style.parentNode) {
-              style.parentNode.removeChild(style);
+              style.remove();
             }
           }, 300);
         };

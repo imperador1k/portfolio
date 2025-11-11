@@ -1,5 +1,5 @@
 import { memo, useRef } from "react";
-import StyledProfessionalExperience from "./StyledProfessionalExperience";
+import StyledProfessionalExperience from "components/apps/ProfessionalExperience/StyledProfessionalExperience";
 import { type ComponentProcessProps } from "components/system/Apps/RenderComponent";
 import useTitle from "components/system/Window/useTitle";
 
@@ -14,10 +14,10 @@ const ProfessionalExperience = ({ id }: ComponentProcessProps) => {
           <div className="profile">
             <div className="avatar-placeholder">
               <div className="windows-logo">
-                <div className="logo-square"></div>
-                <div className="logo-square"></div>
-                <div className="logo-square"></div>
-                <div className="logo-square"></div>
+                <div className="logo-square" />
+                <div className="logo-square" />
+                <div className="logo-square" />
+                <div className="logo-square" />
               </div>
             </div>
             <div className="name-title">

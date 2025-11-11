@@ -1,8 +1,8 @@
 import { memo, useRef, useEffect, useState } from "react";
-import StyledAboutMeModern from "./StyledAboutMeModern";
+import Icons from "components/apps/AboutMe/Icons";
+import StyledAboutMeModern from "components/apps/AboutMe/StyledAboutMeModern";
 import { type ComponentProcessProps } from "components/system/Apps/RenderComponent";
 import useTitle from "components/system/Window/useTitle";
-import Icons from "./Icons";
 
 const AboutMeModern: FC<ComponentProcessProps> = ({ id }) => {
   const aboutMeRef = useRef<HTMLDivElement>(null);
@@ -13,7 +13,7 @@ const AboutMeModern: FC<ComponentProcessProps> = ({ id }) => {
   useEffect(() => {
     // Check if the image exists
     const img = new Image();
-    img.onload = () => setImageLoaded(true);
+    img.addEventListener('load', () => setImageLoaded(true));
     img.onerror = () => setImageError(true);
     img.src = "/Users/Public/Pictures/about-me.png";
   }, []);
@@ -26,18 +26,18 @@ const AboutMeModern: FC<ComponentProcessProps> = ({ id }) => {
             <div className="avatar-container">
               {imageLoaded && !imageError ? (
                 <img 
-                  src="/Users/Public/Pictures/about-me.png" 
                   alt="Profile" 
-                  className="avatar-image"
+                  className="avatar-image" 
                   onError={() => setImageError(true)}
+                  src="/Users/Public/Pictures/about-me.png"
                 />
               ) : (
                 <div className="avatar-placeholder">
                   <div className="windows-logo">
-                    <div className="logo-square"></div>
-                    <div className="logo-square"></div>
-                    <div className="logo-square"></div>
-                    <div className="logo-square"></div>
+                    <div className="logo-square" />
+                    <div className="logo-square" />
+                    <div className="logo-square" />
+                    <div className="logo-square" />
                   </div>
                 </div>
               )}

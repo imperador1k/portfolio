@@ -13,37 +13,6 @@ const directory: Processes = {
     icon: "/Users/Public/Pictures/about-me.png",
     title: "About Me",
   },
-  Projects: {
-    Component: dynamic(() => import("components/apps/Projects/Projects")),
-    backgroundColor: "#1a1a2e",
-    defaultSize: {
-      height: 600,
-      width: 900,
-    },
-    icon: "/Users/Public/Pictures/react.webp",
-    title: "Projects",
-  },
-  ProfessionalExperience: {
-    Component: dynamic(() => import("components/apps/ProfessionalExperience/index")),
-    backgroundColor: "#1e1e2e",
-    defaultSize: {
-      height: 600,
-      width: 800,
-    },
-    icon: "/Users/Public/Pictures/experience.png",
-    title: "Professional Experience",
-  },
-  Contact: {
-    Component: dynamic(() => import("components/apps/Contact")),
-    backgroundColor: "#0f0c29",
-    defaultSize: {
-      height: 850,
-      width: 1300,
-    },
-    icon: "/Users/Public/Pictures/contact.png",
-    title: "Contact",
-  },
-  
   BoxedWine: {
     Component: dynamic(() => import("components/apps/BoxedWine")),
     allowResizing: false,
@@ -83,6 +52,17 @@ const directory: Processes = {
     icon: "/System/Icons/classicube.webp",
     libs: ["/Program Files/ClassiCube/ClassiCube.js"],
     title: "ClassiCube",
+  },
+  
+  Contact: {
+    Component: dynamic(() => import("components/apps/Contact")),
+    backgroundColor: "#0f0c29",
+    defaultSize: {
+      height: 850,
+      width: 1300,
+    },
+    icon: "/Users/Public/Pictures/contact.png",
+    title: "Contact",
   },
   DXBall: {
     Component: dynamic(() => import("components/apps/DX-Ball")),
@@ -134,6 +114,16 @@ const directory: Processes = {
     icon: FOLDER_ICON,
     title: "File Explorer",
   },
+  ProfessionalExperience: {
+    Component: dynamic(() => import("components/apps/ProfessionalExperience/index")),
+    backgroundColor: "#1e1e2e",
+    defaultSize: {
+      height: 600,
+      width: 800,
+    },
+    icon: "/Users/Public/Pictures/experience.png",
+    title: "Professional Experience",
+  },
   IRC: {
     Component: dynamic(() => import("components/apps/IRC")),
     backgroundColor: "#FFF",
@@ -144,6 +134,16 @@ const directory: Processes = {
     icon: "/System/Icons/kiwiirc.webp",
     libs: ["/Program Files/kiwiirc/index.html"],
     title: "IRC",
+  },
+  Projects: {
+    Component: dynamic(() => import("components/apps/Projects/Projects")),
+    backgroundColor: "#1a1a2e",
+    defaultSize: {
+      height: 600,
+      width: 900,
+    },
+    icon: "/Users/Public/Pictures/react.webp",
+    title: "Projects",
   },
   JSDOS: {
     Component: dynamic(() => import("components/apps/JSDOS")),

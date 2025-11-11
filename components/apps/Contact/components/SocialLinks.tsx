@@ -1,4 +1,4 @@
-import React from 'react';
+import type React from 'react';
 import { Github, Linkedin, Twitter, Instagram } from 'lucide-react';
 import styled from 'styled-components';
 
@@ -140,26 +140,24 @@ const SocialLink = styled.a`
   }
 `;
 
-const SocialLinks: React.FC = () => {
-  return (
+const SocialLinks: React.FC = () => (
     <SocialContainer>
       <SectionTitle>Connect With Me</SectionTitle>
       <SocialGrid>
-        <SocialLink href="#" aria-label="GitHub">
+        <SocialLink aria-label="GitHub" href="#">
           <Github size={28} />
         </SocialLink>
-        <SocialLink href="#" aria-label="LinkedIn">
+        <SocialLink aria-label="LinkedIn" href="#">
           <Linkedin size={28} />
         </SocialLink>
-        <SocialLink href="#" aria-label="Twitter">
+        <SocialLink aria-label="Twitter" href="#">
           <Twitter size={28} />
         </SocialLink>
-        <SocialLink href="#" aria-label="Instagram">
+        <SocialLink aria-label="Instagram" href="#">
           <Instagram size={28} />
         </SocialLink>
       </SocialGrid>
     </SocialContainer>
   );
-};
 
 export default SocialLinks;

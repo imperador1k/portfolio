@@ -1,3 +1,4 @@
-import ProfessionalExperience from "./ProfessionalExperience";
 
-export default ProfessionalExperience;
+
+
+export {default} from "./ProfessionalExperience";

@@ -1,5 +1,4 @@
 import { type ProxyState } from "components/apps/Browser/useProxyMenu";
-import { FAVICON_BASE_PATH } from "utils/constants";
 
 type Bookmark = {
   icon: string;

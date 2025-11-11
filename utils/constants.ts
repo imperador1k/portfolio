@@ -311,7 +311,7 @@ export const SESSION_FILE = "/session.json";
 
 export const SHORTCUT_ICON = `${ICON_PATH}/shortcut.webp`;
 
-export const FAVICON_BASE_PATH = "/favicon.ico?v=" + Date.now();
+export const FAVICON_BASE_PATH = `/favicon.ico?v=${  Date.now()}`;
 
 export const FOLDER_ICON = `${ICON_PATH}/folder.webp`;
 
